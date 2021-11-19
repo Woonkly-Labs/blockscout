@@ -470,6 +470,8 @@ defmodule EthereumJSONRPC.Parity.Trace do
     {key, Result.to_elixir(result)}
   end
 
+  defp entry_to_elixir({"revertReason", reason} = entry) when is_binary(reason), do: entry
+
   defp entry_to_elixir({"transactionIndex", index} = entry) when is_integer(index), do: entry
 
   defp put_call_error_or_result(params, %{
